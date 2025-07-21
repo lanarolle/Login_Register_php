@@ -1,29 +1,18 @@
 <?php
-require_once 'config.php';
+session_start();
+include 'config.php';
 
 // Check if user is logged in
 function isLoggedIn() {
     return isset($_SESSION['user']);
 }
 
-// Get current user data
-function getCurrentUser() {
-    return $_SESSION['user'] ?? null;
-}
+// Redirect to login if not authenticated
+$allowed_pages = ['login.php', 'register.php', 'index.php'];
+$current_page = basename($_SERVER['PHP_SELF']);
 
-// Require authentication for protected pages
-function requireAuth() {
-    if (!isLoggedIn()) {
-        setFlashMessage('error', 'Please log in to access this page.');
-        redirect('login.php');
-    }
-}
-
-// Check if current page requires authentication
-$protectedPages = ['profile.php', 'contact.php'];
-$currentPage = basename($_SERVER['PHP_SELF']);
-
-if (in_array($currentPage, $protectedPages) && !isLoggedIn()) {
-    requireAuth();
+if (!isLoggedIn() && !in_array($current_page, $allowed_pages)) {
+    header('Location: login.php');
+    exit();
 }
 ?>
