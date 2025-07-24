@@ -1,5 +1,5 @@
 <?php
-include 'includes/config.php';
+include_once 'includes/config.php';
 include 'includes/header.php';
 
 // Check for login error

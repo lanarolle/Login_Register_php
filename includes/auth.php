@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include_once 'config.php';
 
 // Check if user is logged in
 function isLoggedIn() {

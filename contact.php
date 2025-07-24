@@ -1,6 +1,6 @@
 <?php
 include 'includes/auth.php'; // Check if user is logged in
-include 'includes/config.php';
+include_once 'includes/config.php';
 include 'includes/header.php';
 $page_title = 'Contact Us';
 ?>
